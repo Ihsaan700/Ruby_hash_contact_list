@@ -34,7 +34,7 @@ def main_menu
   when '1'
     view_contacts
   when '2'
-    puts 'Add Contact'
+    add_contact
   when '3'
     puts 'Edit Contact'
   when '4'
@@ -57,6 +57,27 @@ def view_contacts
     puts
     puts "Phone Number: #{contact[:phone]}"
   end
+end
+
+def add_contact
+  contact = {}
+
+  puts 'First Name?'
+  print '>'
+  contact[:first_name] = gets.strip
+
+  puts 'Last Name?'
+  print '>'
+  contact[:last_name] = gets.strip
+
+  puts 'Phone Number?'
+  print '>'
+  contact[:phone] = gets.strip
+
+  @contacts << contact
+  puts "Added!"
+  puts "#{contact[:first_name]} #{contact[:last_name]} #{contact[:phone]}"
+  main_menu
 end
 
 main_menu
