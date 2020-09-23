@@ -10,9 +10,15 @@
 # The menu should loop until the user exits
 
 @contacts = [
-  { first_name: 'DC', last_name: 'Christ', phone: '020 789 21' },
-  { first_name: 'Thiery', last_name: 'Henry', phone: '020 456 89' },
-  { first_name: 'cuevas', last_name: 'Ronaldo', phone: '020 386 09' }
+  { first_name: 'DC',
+    last_name: 'Christ',
+    phone: '020 789 21' },
+  { first_name: 'Thiery',
+    last_name: 'Henry',
+    phone: '020 456 89' },
+  { first_name: 'Ronaldo',
+    last_name: 'Cuevas',
+    phone: '020 386 09' }
 ]
 
 def main_menu
@@ -26,7 +32,7 @@ def main_menu
 
   case gets.strip
   when '1'
-    puts 'View Contacts'
+    view_contacts
   when '2'
     puts 'Add Contact'
   when '3'
@@ -40,6 +46,17 @@ def main_menu
   end
 
   main_menu
+end
+
+def view_contacts
+  puts 'Your Contacts: '
+  puts
+  @contacts.each_with_index do |contact, idx|
+    print "#{idx + 1}: "
+    print "#{contact[:first_name]} #{contact[:last_name]}"
+    puts
+    puts "Phone Number: #{contact[:phone]}"
+  end
 end
 
 main_menu
