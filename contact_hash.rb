@@ -38,7 +38,7 @@ def main_menu
   when '3'
     edit_contact
   when '4'
-    puts 'Delete Contact'
+    delete_contact
   when '5'
     puts 'Thanks for using the Contact List'
   else
@@ -100,6 +100,22 @@ def edit_contact
   print 'New phone number?'
   input = gets.strip
   input == '' ? nil : contact[:phone] = input
+
+  main_menu
+end
+
+def delete_contact
+  view_contacts
+  puts
+  puts 'Which Contact do you want to delete?'
+  print '>'
+  index = gets.to_i - 1
+  contact = @contacts[index]
+  puts "Are you sure you want to delete #{contact[:first_name]} #{contact[:last_name]} #{contact[:phone]}"
+  puts 'y/n'
+  gets.strip == 'y' ? nil : main_menu
+  @contacts.delete_at(index)
+  puts 'Deleted!'
 
   main_menu
 end
