@@ -36,7 +36,7 @@ def main_menu
   when '2'
     add_contact
   when '3'
-    puts 'Edit Contact'
+    edit_contact
   when '4'
     puts 'Delete Contact'
   when '5'
@@ -75,8 +75,32 @@ def add_contact
   contact[:phone] = gets.strip
 
   @contacts << contact
-  puts "Added!"
+  puts 'Added!'
   puts "#{contact[:first_name]} #{contact[:last_name]} #{contact[:phone]}"
+  main_menu
+end
+
+def edit_contact
+  view_contacts
+  puts
+  puts 'Pick contact to edit'
+  print '>'
+  contact = @contacts[gets.to_i - 1]
+
+  puts "Edit Contact: #{contact[:first_name]} #{contact[:last_name]} #{contact[:phone]}"
+  puts
+  print 'New first name?'
+  input = gets.strip
+  input == '' ? nil : contact[:first_name] = input
+
+  print 'New last name?'
+  input = gets.strip
+  input == '' ? nil : contact[:last_name] = input
+
+  print 'New phone number?'
+  input = gets.strip
+  input == '' ? nil : contact[:phone] = input
+
   main_menu
 end
 
